@@ -1018,22 +1018,57 @@
     /* ═══════════ RESPONSIVE ═══════════ */
     @media (max-width: 920px) {
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-      .phone-wrap { order: -1; }
-      .phone { width: 260px; height: 520px; }
+      /* Phone BELOW text on mobile (not above) */
+      .phone { width: 280px; height: 560px; }
       .problem-grid { grid-template-columns: 1fr; }
       .demo-container { grid-template-columns: 1fr; gap: 40px; }
-      .receipt-demo { transform: rotate(0deg); }
-      .label { display: none; }
-      section.section { padding: 80px 24px; }
-      .hero { padding: 110px 24px 60px; }
-      .nav-actions .lang-btns { display: none; }
+      .receipt-demo { transform: rotate(0deg); max-width: 340px; padding-bottom: 24px; overflow: visible; }
+      /* Labels become inline chips below the receipt content */
+      .receipt-demo .label {
+        position: static !important;
+        display: inline-flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        margin: 6px 4px 0 0;
+        font-size: 11px;
+        padding: 6px 10px;
+        box-shadow: none !important;
+        background: rgba(91,127,255,0.12) !important;
+        color: #2D5BE3 !important;
+        border-radius: 8px;
+      }
+      .receipt-demo .label::before { display: none !important; }
+      .receipt-demo .label-1 { margin-top: 18px; }
+      section.section { padding: 80px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .nav-actions { gap: 6px; }
+      .lang-btn { padding: 5px 10px; font-size: 11px; }
     }
     @media (max-width: 540px) {
-      .hero h1 { font-size: 42px; letter-spacing: -1.5px; }
-      .section-title { font-size: 32px; letter-spacing: -1px; }
-      .final-cta h2 { font-size: 38px; letter-spacing: -1px; }
-      .cta-row { width: 100%; }
-      .btn { flex: 1; justify-content: center; }
+      .hero h1 { font-size: 38px; letter-spacing: -1.5px; }
+      .hero-sub { font-size: 16px; }
+      .section-title { font-size: 30px; letter-spacing: -1px; }
+      .section-sub { font-size: 16px; }
+      .final-cta h2 { font-size: 34px; letter-spacing: -1px; }
+      .cta-row { flex-direction: column; width: 100%; }
+      .btn { width: 100%; justify-content: center; }
+      .phone { width: 240px; height: 480px; padding: 12px; }
+      .nav-inner { padding: 0 16px; gap: 8px; }
+      .brand-text { font-size: 17px; }
+      .hero-badge { font-size: 11px; padding: 5px 10px 5px 6px; }
+      .problem-card { padding: 28px 22px; }
+      .price-card { padding: 32px 24px; }
+      .price-amount { font-size: 52px; }
+      .founder-quote { font-size: 18px; }
+      .receipt-demo { max-width: 100%; padding: 24px 20px; }
+    }
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 34px; }
+      .section-title { font-size: 26px; }
+      .final-cta h2 { font-size: 30px; }
+      .phone { width: 220px; height: 440px; padding: 10px; }
+      .lang-btn { padding: 4px 8px; font-size: 10px; }
     }
   </style>
 </head>
