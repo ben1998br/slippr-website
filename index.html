@@ -1,59 +1,99 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Slippr · Mis nooit meer aftrekbare kosten</title>
-  <meta name="description" content="Scan je bonnetjes in 5 seconden. AI leest leverancier, bedrag en BTW automatisch. Kant-en-klaar kwartaalrapport voor je boekhouder. Voor ZZP'ers in BE en NL." />
+  <title>Slippr · Krijg je zaterdagavonden terug</title>
+  <meta name="description" content="Scan je bonnetjes in 5 seconden. AI extraheert leverancier, bedrag en BTW automatisch. Kant-en-klaar kwartaalrapport voor je boekhouder. Voor Belgische en Nederlandse zelfstandigen." />
 
-  <!-- OpenGraph for social sharing -->
-  <meta property="og:title" content="Slippr · Mis nooit meer aftrekbare kosten" />
-  <meta property="og:description" content="De snelste bonnetjes-app voor Belgische en Nederlandse zelfstandigen. 5 gratis scans, daarna €7,99/maand onbeperkt." />
+  <meta property="og:title" content="Slippr · Krijg je zaterdagavonden terug" />
+  <meta property="og:description" content="De snelste bonnetjes-app voor BE/NL zelfstandigen. 5 gratis scans, daarna €7,99/maand." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://slippr.net" />
   <meta property="og:image" content="https://slippr.net/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-
   <link rel="canonical" href="https://slippr.net" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
   <style>
-    :root {
-      --primary: #2D5BE3;
-      --primary-light: #E8EEFF;
-      --primary-dark: #1E3FA8;
-      --background: #F5F5F7;
+    /* ═══════════ THEMING ═══════════ */
+    :root[data-theme="dark"] {
+      --bg: #0A0A0F;
+      --bg-elevated: #14141C;
+      --surface: #1A1A24;
+      --surface-hover: #22222E;
+      --text: #FFFFFF;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.18);
+      --primary: #5B7FFF;
+      --primary-glow: rgba(91,127,255,0.25);
+      --primary-dim: rgba(91,127,255,0.12);
+      --accent-green: #34D399;
+      --accent-amber: #FBBF24;
+      --accent-pink: #F472B6;
+      --gradient: linear-gradient(135deg, #5B7FFF 0%, #8B5CF6 100%);
+      --gradient-soft: linear-gradient(135deg, rgba(91,127,255,0.15) 0%, rgba(139,92,246,0.15) 100%);
+      --shadow-glow: 0 0 80px rgba(91,127,255,0.18);
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    :root[data-theme="light"] {
+      --bg: #FAFAFC;
+      --bg-elevated: #FFFFFF;
       --surface: #FFFFFF;
-      --text: #1A1A2E;
-      --text-secondary: #6B7280;
-      --border: #E5E7EB;
-      --success: #10B981;
-      --amber: #F59E0B;
+      --surface-hover: #F5F5F8;
+      --text: #0A0A0F;
+      --text-secondary: #4B5563;
+      --text-muted: #9CA3AF;
+      --border: rgba(0,0,0,0.08);
+      --border-hover: rgba(0,0,0,0.16);
+      --primary: #2D5BE3;
+      --primary-glow: rgba(45,91,227,0.18);
+      --primary-dim: rgba(45,91,227,0.08);
+      --accent-green: #10B981;
+      --accent-amber: #F59E0B;
+      --accent-pink: #EC4899;
+      --gradient: linear-gradient(135deg, #2D5BE3 0%, #8B5CF6 100%);
+      --gradient-soft: linear-gradient(135deg, rgba(45,91,227,0.08) 0%, rgba(139,92,246,0.08) 100%);
+      --shadow-glow: 0 0 80px rgba(45,91,227,0.12);
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: var(--background);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       font-size: 16px;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
     }
 
-    /* Top nav */
+    ::selection { background: var(--primary); color: #fff; }
+
+    /* ═══════════ NAV ═══════════ */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: var(--surface);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: rgba(10,10,15,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      padding: 12px 0;
+      transition: background-color 0.4s ease, border-color 0.4s ease;
     }
+    [data-theme="light"] nav { background: rgba(250,250,252,0.75); }
 
     .nav-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
       display: flex;
@@ -68,918 +108,1778 @@
       gap: 10px;
       text-decoration: none;
       color: var(--text);
+      transition: opacity 0.2s;
     }
+    .brand:hover { opacity: 0.8; }
 
     .brand-icon {
       width: 36px;
       height: 36px;
-      background: var(--primary);
+      background: var(--gradient);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 800;
+      box-shadow: 0 4px 16px var(--primary-glow);
     }
 
     .brand-text {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.4px;
     }
 
-    .lang-btns { display: flex; gap: 6px; }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-btns {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: var(--surface);
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
 
     .lang-btn {
       padding: 5px 12px;
-      border-radius: 16px;
-      border: 1.5px solid var(--border);
+      border-radius: 999px;
       background: transparent;
       color: var(--text-secondary);
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.15s;
+      transition: all 0.2s;
+      border: none;
+      font-family: inherit;
     }
-
-    .lang-btn.active,
-    .lang-btn:hover {
-      background: var(--primary-light);
-      border-color: var(--primary);
-      color: var(--primary);
+    .lang-btn.active {
+      background: var(--text);
+      color: var(--bg);
     }
+    .lang-btn:hover:not(.active) { color: var(--text); }
 
-    /* Hero */
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+    }
+    .theme-toggle:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+    }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+    [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
+    [data-theme="light"] .theme-toggle .sun-icon { display: none; }
+    [data-theme="light"] .theme-toggle .moon-icon { display: block; }
+
+    /* ═══════════ HERO ═══════════ */
     .hero {
-      padding: 80px 24px 60px;
-      text-align: center;
-      background: linear-gradient(180deg, var(--background) 0%, var(--surface) 100%);
+      position: relative;
+      min-height: 100vh;
+      padding: 120px 24px 80px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      filter: blur(60px);
+      z-index: 0;
+      pointer-events: none;
     }
 
     .hero-inner {
-      max-width: 780px;
+      max-width: 1200px;
       margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px 6px 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s 0.1s both;
+    }
+    .hero-badge .dot {
+      width: 18px; height: 18px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 11px;
     }
 
     .hero h1 {
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 20px;
+      font-size: clamp(40px, 6vw, 76px);
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      line-height: 1;
+      margin-bottom: 28px;
+      animation: fadeInUp 0.6s 0.2s both;
     }
-
-    .hero h1 .highlight {
-      color: var(--primary);
+    .hero h1 .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
 
     .hero-sub {
-      font-size: clamp(16px, 2vw, 20px);
+      font-size: clamp(17px, 2vw, 21px);
       color: var(--text-secondary);
       margin-bottom: 36px;
-      max-width: 620px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 540px;
+      animation: fadeInUp 0.6s 0.3s both;
     }
 
     .cta-row {
       display: flex;
-      justify-content: center;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.6s 0.4s both;
     }
 
-    .play-btn {
+    .btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--text);
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 10px;
+      padding: 14px 24px;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 16px;
-      transition: all 0.15s;
-    }
-
-    .play-btn:hover {
-      background: #000;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .play-btn svg { width: 24px; height: 24px; }
-
-    .hero-note {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-
-    /* Sections */
-    section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
-
-    section.alt {
-      max-width: none;
-      background: var(--surface);
-    }
-
-    section.alt .inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    h2 {
-      font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: var(--text);
-      margin-bottom: 14px;
-      text-align: center;
-    }
-
-    .section-intro {
-      font-size: 17px;
-      color: var(--text-secondary);
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 48px;
-    }
-
-    /* Problem stat */
-    .stat-box {
-      background: #FEF3C7;
-      border-left: 4px solid var(--amber);
-      border-radius: 10px;
-      padding: 24px 28px;
-      margin: 32px auto 0;
-      max-width: 640px;
-      text-align: left;
-    }
-
-    .stat-number {
-      font-size: 28px;
-      font-weight: 800;
-      color: #92400E;
-      display: block;
-    }
-
-    .stat-text {
       font-size: 15px;
-      color: #78350F;
-      margin-top: 4px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
     }
-
-    /* Steps */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 16px;
-    }
-
-    .step {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 24px;
-      text-align: center;
-    }
-
-    .step-number {
-      width: 48px;
-      height: 48px;
-      background: var(--primary);
+    .btn-primary {
+      background: var(--gradient);
       color: #fff;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 16px;
+      box-shadow: 0 8px 32px var(--primary-glow);
     }
-
-    .step h3 {
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .step p {
-      font-size: 15px;
-      color: var(--text-secondary);
-    }
-
-    /* Feature grid */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .feature {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      transition: all 0.2s;
-    }
-
-    .feature:hover {
+    .btn-primary:hover {
       transform: translateY(-2px);
-      border-color: var(--primary);
-      box-shadow: 0 8px 24px rgba(45,91,227,0.08);
+      box-shadow: 0 12px 40px var(--primary-glow);
     }
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+    }
+    .btn svg { width: 20px; height: 20px; }
 
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--primary-light);
-      border-radius: 10px;
+    .hero-trust {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .feature h3 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .feature p {
+      gap: 14px;
       font-size: 14px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
+      animation: fadeInUp 0.6s 0.5s both;
     }
-
-    /* Pricing */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      max-width: 720px;
-      margin: 0 auto;
+    .hero-trust-avatars {
+      display: flex;
     }
-
-    .price-card {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
-      text-align: center;
+    .hero-trust-avatars .avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      margin-left: -8px;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: #fff;
     }
+    .hero-trust-avatars .avatar:first-child { margin-left: 0; }
+    .hero-trust-avatars .avatar:nth-child(2) { background: linear-gradient(135deg, #F472B6, #EC4899); }
+    .hero-trust-avatars .avatar:nth-child(3) { background: linear-gradient(135deg, #FBBF24, #F59E0B); }
+    .hero-trust-avatars .avatar:nth-child(4) { background: linear-gradient(135deg, #34D399, #10B981); }
 
-    .price-card.popular {
-      border-color: var(--primary);
+    /* ═══════════ PHONE MOCKUP ═══════════ */
+    .phone-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInScale 0.8s 0.3s both;
+    }
+    .phone {
+      width: 320px;
+      height: 640px;
+      background: #000;
+      border-radius: 44px;
+      padding: 14px;
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.05),
+        0 30px 80px rgba(0,0,0,0.5),
+        0 0 100px var(--primary-glow);
+      position: relative;
+      overflow: hidden;
+    }
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 18px; left: 50%;
+      transform: translateX(-50%);
+      width: 100px; height: 28px;
+      background: #000;
+      border-radius: 14px;
+      z-index: 10;
+    }
+    .phone-screen {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      border-radius: 32px;
+      overflow: hidden;
       position: relative;
     }
-
-    .popular-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 14px;
-      border-radius: 12px;
-      letter-spacing: 0.5px;
+    .phone-content {
+      padding: 50px 16px 16px;
+      animation: phoneScroll 16s ease-in-out infinite;
     }
-
-    .price-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+    @keyframes phoneScroll {
+      0%, 15% { transform: translateY(0); }
+      45%, 60% { transform: translateY(-280px); }
+      85%, 100% { transform: translateY(-560px); }
     }
-
-    .price-amount {
-      font-size: 42px;
+    .phone-header {
+      font-size: 24px;
       font-weight: 800;
       color: var(--text);
       margin-bottom: 4px;
     }
+    .phone-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .phone-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .phone-card-icon {
+      width: 40px; height: 40px;
+      background: var(--primary-dim);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .phone-card-content { flex: 1; min-width: 0; }
+    .phone-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .phone-card-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .phone-card-amount {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
 
-    .price-period {
+    /* ═══════════ SECTION ═══════════ */
+    section.section {
+      padding: 120px 24px;
+      position: relative;
+    }
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .section-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      max-width: 720px;
+    }
+    .section-title .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-sub {
+      font-size: 19px;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+
+    /* ═══════════ PROBLEM ═══════════ */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .problem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .problem-card.before {
+      background: linear-gradient(135deg, rgba(244,114,182,0.06), rgba(244,114,182,0.02));
+      border-color: rgba(244,114,182,0.15);
+    }
+    .problem-card.after {
+      background: linear-gradient(135deg, rgba(52,211,153,0.06), rgba(52,211,153,0.02));
+      border-color: rgba(52,211,153,0.15);
+    }
+    .problem-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .problem-card .icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .problem-card.before .icon { background: rgba(244,114,182,0.15); }
+    .problem-card.after .icon { background: rgba(52,211,153,0.15); }
+    .problem-card ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+    .problem-card li {
+      padding: 10px 0 10px 28px;
+      position: relative;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+    .problem-card.before li::before {
+      content: '✕';
+      position: absolute; left: 0;
+      color: var(--accent-pink);
+      font-weight: 700;
+    }
+    .problem-card.after li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    /* ═══════════ DEMO ═══════════ */
+    .demo-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .demo-text h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .demo-text p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .demo-text .check-list {
+      list-style: none;
+      margin-top: 24px;
+    }
+    .demo-text .check-list li {
+      padding: 8px 0 8px 32px;
+      position: relative;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+    .demo-text .check-list li::before {
+      content: '✓';
+      position: absolute; left: 4px;
+      width: 20px; height: 20px;
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .receipt-demo {
+      position: relative;
+      background: #FFFBEF;
+      border-radius: 16px;
+      padding: 28px 24px;
+      font-family: 'Courier New', monospace;
+      color: #1A1A1A;
+      box-shadow: var(--shadow-card);
+      max-width: 380px;
+      margin: 0 auto;
+      transform: rotate(-2deg);
+      transition: transform 0.3s;
+    }
+    .receipt-demo:hover { transform: rotate(0deg); }
+    .receipt-demo::before,
+    .receipt-demo::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 12px;
+      background: radial-gradient(circle at 6px 0px, transparent 6px, #FFFBEF 6px);
+      background-size: 12px 12px;
+    }
+    .receipt-demo::before { top: -6px; transform: rotate(180deg); }
+    .receipt-demo::after { bottom: -6px; }
+
+    .receipt-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 13px;
+    }
+    .receipt-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+    }
+    .receipt-address {
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 16px;
+    }
+    .receipt-divider {
+      border-top: 1px dashed #999;
+      margin: 12px 0;
+    }
+    .receipt-total {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .label {
+      position: absolute;
+      background: var(--gradient);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 8px 24px var(--primary-glow);
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+      z-index: 5;
+    }
+    .label::before {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 1px;
+      background: var(--primary);
+      top: 50%;
+    }
+    .label.left::before { right: 100%; }
+    .label.right::before { left: 100%; }
+
+    .receipt-demo.animated .label {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .receipt-demo.animated .label-1 { transition-delay: 0.2s; }
+    .receipt-demo.animated .label-2 { transition-delay: 0.5s; }
+    .receipt-demo.animated .label-3 { transition-delay: 0.8s; }
+    .receipt-demo.animated .label-4 { transition-delay: 1.1s; }
+    .receipt-demo.animated .label-5 { transition-delay: 1.4s; }
+
+    .label-1 { top: 8%; left: -130px; }
+    .label-2 { top: 22%; left: -100px; }
+    .label-3 { bottom: 50%; right: -150px; }
+    .label-4 { bottom: 35%; right: -150px; }
+    .label-5 { bottom: 12%; left: -120px; }
+
+    /* ═══════════ TRUST ═══════════ */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 60px;
+    }
+    .trust-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: all 0.2s;
+    }
+    .trust-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .trust-card .icon {
+      width: 44px; height: 44px;
+      background: var(--gradient-soft);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .trust-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .trust-card p {
       font-size: 14px;
       color: var(--text-secondary);
-      margin-bottom: 24px;
+      line-height: 1.5;
     }
 
-    .price-list {
-      list-style: none;
+    /* ═══════════ FOUNDER ═══════════ */
+    .founder-section {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .founder-card {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .founder-avatar {
+      width: 72px; height: 72px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 auto 24px;
+      box-shadow: 0 12px 32px var(--primary-glow);
+    }
+    .founder-quote {
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .founder-sig {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .founder-sig a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .founder-sig a:hover { text-decoration: underline; }
+
+    /* ═══════════ FEATURES (compact) ═══════════ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+    .feature:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+    .feature h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .feature p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ═══════════ PRICING ═══════════ */
+    .pricing {
+      max-width: 480px;
+      margin: 60px auto 0;
+    }
+    .price-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .price-card > * { position: relative; }
+    .price-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .price-amount {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-amount .currency {
+      font-size: 32px;
+      vertical-align: top;
+      margin-right: 4px;
+    }
+    .price-period {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    .price-features {
       text-align: left;
-      margin-bottom: 24px;
+      list-style: none;
+      margin-bottom: 32px;
     }
-
-    .price-list li {
-      padding: 8px 0 8px 28px;
+    .price-features li {
+      padding: 10px 0 10px 28px;
       position: relative;
       font-size: 15px;
       color: var(--text);
     }
-
-    .price-list li::before {
+    .price-features li::before {
       content: '✓';
-      position: absolute;
-      left: 4px;
-      color: var(--success);
+      position: absolute; left: 0;
+      width: 20px; height: 20px;
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
       font-weight: 800;
     }
-
-    /* FAQ */
-    details {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px 22px;
-      margin-bottom: 10px;
-      cursor: pointer;
+    .price-card .btn { width: 100%; justify-content: center; }
+    .price-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 16px;
     }
 
-    details[open] { border-color: var(--primary); }
-
-    summary {
+    /* ═══════════ FAQ ═══════════ */
+    .faq-list {
+      max-width: 760px;
+      margin: 48px auto 0;
+    }
+    details.faq {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+    }
+    details.faq[open] {
+      border-color: var(--primary);
+      background: var(--surface-hover);
+    }
+    details.faq summary {
       font-size: 16px;
       font-weight: 600;
-      color: var(--text);
+      cursor: pointer;
       list-style: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
     }
-
-    summary::-webkit-details-marker { display: none; }
-
-    summary::after {
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq summary::after {
       content: '+';
-      font-size: 24px;
+      width: 28px; height: 28px;
+      background: var(--primary-dim);
       color: var(--primary);
-      font-weight: 700;
-      transition: transform 0.15s;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      font-weight: 600;
+      flex-shrink: 0;
+      transition: transform 0.2s;
     }
-
-    details[open] summary::after {
+    details.faq[open] summary::after {
       content: '−';
+      transform: rotate(180deg);
     }
-
-    details p {
+    details.faq p {
       font-size: 15px;
       color: var(--text-secondary);
-      margin-top: 12px;
+      margin-top: 16px;
       line-height: 1.7;
     }
 
-    /* Final CTA */
+    /* ═══════════ FINAL CTA ═══════════ */
     .final-cta {
-      background: var(--primary);
-      color: #fff;
+      padding: 120px 24px;
       text-align: center;
-      padding: 72px 24px;
+      position: relative;
+      overflow: hidden;
     }
-
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      filter: blur(60px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .final-cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+    }
     .final-cta h2 {
-      color: #fff;
-      margin-bottom: 12px;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
     }
-
     .final-cta p {
-      color: rgba(255,255,255,0.85);
-      font-size: 17px;
-      margin-bottom: 28px;
+      font-size: 19px;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
     }
 
-    .final-cta .play-btn {
-      background: #fff;
-      color: var(--primary);
-    }
-
-    .final-cta .play-btn:hover { background: var(--background); }
-
-    /* Footer */
+    /* ═══════════ FOOTER ═══════════ */
     footer {
-      background: var(--text);
-      color: rgba(255,255,255,0.7);
       padding: 48px 24px 32px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-elevated);
     }
-
     .footer-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
       justify-content: space-between;
+      align-items: center;
     }
-
-    .footer-brand .brand-text { color: #fff; }
-
     .footer-links {
       display: flex;
       gap: 24px;
       flex-wrap: wrap;
     }
-
     .footer-links a {
-      color: rgba(255,255,255,0.7);
+      color: var(--text-secondary);
       text-decoration: none;
       font-size: 14px;
-      transition: color 0.15s;
+      transition: color 0.2s;
     }
-
-    .footer-links a:hover { color: #fff; }
-
+    .footer-links a:hover { color: var(--text); }
     .footer-bottom {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 32px auto 0;
       padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid var(--border);
       text-align: center;
       font-size: 13px;
+      color: var(--text-muted);
     }
 
-    /* Lang sections */
+    /* ═══════════ ANIMATIONS ═══════════ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════ LANG SECTIONS ═══════════ */
     .lang-section { display: none; }
     .lang-section.active { display: block; }
 
-    @media (max-width: 600px) {
-      section { padding: 48px 20px; }
-      .hero { padding: 56px 20px 40px; }
-      .final-cta { padding: 56px 20px; }
-      .stat-box { padding: 18px 20px; }
-      .step, .feature, .price-card { padding: 22px 20px; }
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media (max-width: 920px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .phone-wrap { order: -1; }
+      .phone { width: 260px; height: 520px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .demo-container { grid-template-columns: 1fr; gap: 40px; }
+      .receipt-demo { transform: rotate(0deg); }
+      .label { display: none; }
+      section.section { padding: 80px 24px; }
+      .hero { padding: 110px 24px 60px; }
+      .nav-actions .lang-btns { display: none; }
+    }
+    @media (max-width: 540px) {
+      .hero h1 { font-size: 42px; letter-spacing: -1.5px; }
+      .section-title { font-size: 32px; letter-spacing: -1px; }
+      .final-cta h2 { font-size: 38px; letter-spacing: -1px; }
+      .cta-row { width: 100%; }
+      .btn { flex: 1; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
+<!-- ═══════════════════ NAV ═══════════════════ -->
 <nav>
   <div class="nav-inner">
     <a class="brand" href="#top">
       <div class="brand-icon">S</div>
       <span class="brand-text">Slippr</span>
     </a>
-    <div class="lang-btns">
-      <a class="lang-btn active" href="#" onclick="switchLang('nl', this); return false;">NL</a>
-      <a class="lang-btn" href="#" onclick="switchLang('fr', this); return false;">FR</a>
-      <a class="lang-btn" href="#" onclick="switchLang('en', this); return false;">EN</a>
+    <div class="nav-actions">
+      <div class="lang-btns">
+        <button class="lang-btn active" onclick="switchLang('nl', this)">NL</button>
+        <button class="lang-btn" onclick="switchLang('fr', this)">FR</button>
+        <button class="lang-btn" onclick="switchLang('en', this)">EN</button>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
   </div>
 </nav>
 
 <main id="top">
 
-  <!-- ═══════════════════════ NL ═══════════════════════ -->
-  <div class="lang-section active" id="lang-nl">
+<!-- ═══════════════════ NL ═══════════════════ -->
+<div class="lang-section active" id="lang-nl">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-inner">
-        <h1>Mis nooit meer<br><span class="highlight">aftrekbare kosten</span></h1>
-        <p class="hero-sub">Scan je bonnetjes in 5 seconden. AI leest leverancier, bedrag en BTW automatisch. Aan het einde van het kwartaal: één tap voor een kant-en-klaar rapport voor je boekhouder.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="dot">✓</span>
+          <span>1.1.0 nu live · voor Belgische en Nederlandse zelfstandigen</span>
+        </div>
+        <h1>Krijg je <span class="gradient-text">zaterdag&shy;avonden</span> terug.</h1>
+        <p class="hero-sub">Stop met bonnen sorteren in een schoenendoos. Slippr scant je bonnetjes in 5 seconden, leest leverancier, BTW en bedrag automatisch, en levert je kwartaalrapport kant-en-klaar af bij je boekhouder.</p>
         <div class="cta-row">
-          <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.198-3.198l2.553 1.4a1 1 0 0 1 0 1.748l-2.553 1.4-2.75-2.274 2.75-2.274zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
             Download op Google Play
           </a>
+          <a class="btn btn-ghost" href="#demo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Zie hoe het werkt
+          </a>
         </div>
-        <p class="hero-note">5 gratis scans · Daarna €7,99/maand · Op elk moment opzegbaar</p>
-      </div>
-    </section>
-
-    <!-- Problem -->
-    <section>
-      <h2>Stop met bonnen sorteren op zaterdagavond</h2>
-      <p class="section-intro">Geen schoenendoos meer onderaan je bureau. Geen Excel die je elke maand bijwerkt. Geen paniek wanneer je boekhouder vraagt om de bonnen van Q2.</p>
-
-      <div class="stat-box">
-        <span class="stat-number">5 minuten i.p.v. 4 uur</span>
-        <span class="stat-text">Wat Slippr in 5 minuten doet (leverancier, BTW en datum extraheren, kwartaalrapport genereren) kost je anders een halve zaterdag per kwartaal. En de stress van een vergeten bon bij een BTW-controle? Daar is je originele PDF, 7 jaar bewaard.</span>
-      </div>
-    </section>
-
-    <!-- How it works -->
-    <section class="alt">
-      <div class="inner">
-        <h2>Hoe het werkt</h2>
-        <p class="section-intro">Drie stappen. Geen Excel. Geen gedoe.</p>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3>Neem foto</h3>
-            <p>Tik op Scan, maak een foto van je bonnetje. Of upload uit je galerij, of deel een PDF-factuur rechtstreeks vanuit Gmail.</p>
+        <div class="hero-trust">
+          <div class="hero-trust-avatars">
+            <div class="avatar">B</div>
+            <div class="avatar">M</div>
+            <div class="avatar">K</div>
+            <div class="avatar">D</div>
           </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3>AI doet de rest</h3>
-            <p>Claude-AI haalt leverancier, datum, bedrag, BTW-percentage en categorie eruit. Je bevestigt met één tik.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3>Klaar voor boekhouder</h3>
-            <p>Einde kwartaal? Eén tap → PDF-rapport met taartdiagram, BTW-uitsplitsing en alle bonnen. Mail naar je boekhouder, klaar.</p>
-          </div>
+          <span>Vertrouwd door zelfstandigen in BE en NL</span>
         </div>
       </div>
-    </section>
-
-    <!-- Features -->
-    <section>
-      <h2>Gemaakt voor BE en NL zelfstandigen</h2>
-      <p class="section-intro">Niet zomaar nóg een scanner-app. Alles is ontworpen voor de Belgische en Nederlandse fiscale realiteit.</p>
-
-      <div class="features">
-        <div class="feature">
-          <div class="feature-icon">🇧🇪🇳🇱</div>
-          <h3>BE en NL BTW-tarieven</h3>
-          <p>Herkent 0/6/12/21% (BE) en 0/9/21% (NL). Ook grensoverschrijdende facturen.</p>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-content">
+              <div class="phone-header">Bonnetjes</div>
+              <div class="phone-subtitle">Q2 2026 · 12 scans</div>
+              <div class="phone-card">
+                <div class="phone-card-icon">🧾</div>
+                <div class="phone-card-content">
+                  <div class="phone-card-title">Bistro Le Coin</div>
+                  <div class="phone-card-meta">Maaltijden · 03/05</div>
+                </div>
+                <div class="phone-card-amount">€54,00</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-icon">⛽</div>
+                <div class="phone-card-content">
+                  <div class="phone-card-title">Shell Tankstation</div>
+                  <div class="phone-card-meta">Reiskosten · 02/05</div>
+                </div>
+                <div class="phone-card-amount">€60,00</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-icon">📄</div>
+                <div class="phone-card-content">
+                  <div class="phone-card-title">Anthropic Ireland</div>
+                  <div class="phone-card-meta">Software · 05/05</div>
+                </div>
+                <div class="phone-card-amount">€108,90</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-icon">🚆</div>
+                <div class="phone-card-content">
+                  <div class="phone-card-title">NMBS</div>
+                  <div class="phone-card-meta">Reiskosten · 28/04</div>
+                </div>
+                <div class="phone-card-amount">€25,80</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-icon">📱</div>
+                <div class="phone-card-content">
+                  <div class="phone-card-title">Proximus</div>
+                  <div class="phone-card-meta">Telecom · 15/04</div>
+                </div>
+                <div class="phone-card-amount">€45,00</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-icon">🏨</div>
+                <div class="phone-card-content">
+                  <div class="phone-card-title">Booking.com</div>
+                  <div class="phone-card-meta">Reiskosten · 12/04</div>
+                </div>
+                <div class="phone-card-amount">€185,00</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-icon">💼</div>
+                <div class="phone-card-content">
+                  <div class="phone-card-title">Apple Store</div>
+                  <div class="phone-card-meta">Kantoor · 04/04</div>
+                </div>
+                <div class="phone-card-amount">€1.299,00</div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Het probleem</span>
+      <h2 class="section-title">Bonnen sorteren <span class="gradient-text">eet je weekend op</span>.</h2>
+      <p class="section-sub">Elke drie maanden hetzelfde verhaal: schoenendoos open, Excel openen, BTW berekenen, scan voor scan. Vier uur per kwartaal verloren aan administratie. Slippr verandert dat in vijf minuten.</p>
+
+      <div class="problem-grid">
+        <div class="problem-card before">
+          <h3><span class="icon">😩</span> Zonder Slippr</h3>
+          <ul>
+            <li>Schoenendoos vol vergeelde bonnen</li>
+            <li>Excel die je elke maand probeert bij te houden</li>
+            <li>BTW handmatig berekenen, telkens opnieuw</li>
+            <li>Paniek wanneer de boekhouder belt</li>
+            <li>Vergeten bonnen = verloren aftrek</li>
+          </ul>
+        </div>
+        <div class="problem-card after">
+          <h3><span class="icon">✨</span> Met Slippr</h3>
+          <ul>
+            <li>Bon scannen in 5 seconden</li>
+            <li>AI extraheert alle data automatisch</li>
+            <li>Multi-BTW correct gesplitst per lijn</li>
+            <li>Eén tap voor kwartaalrapport (PDF)</li>
+            <li>7 jaar bewaard, klaar voor controle</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="section reveal" id="demo">
+    <div class="section-inner">
+      <span class="section-tag">Live demo</span>
+      <h2 class="section-title">Eén tap. <span class="gradient-text">AI doet de rest.</span></h2>
+      <p class="section-sub">Een zakelijke lunch met klant. Multi-BTW (eten 12%, drank 21%). De meeste apps geven het op. Slippr splitst het automatisch — exact zoals je boekhouder het wil.</p>
+
+      <div class="demo-container">
+        <div class="receipt-demo" id="receipt-demo">
+          <div class="receipt-title">BISTRO LE COIN</div>
+          <div class="receipt-address">Grote Markt 12 · Hasselt</div>
+          <div class="receipt-line"><span>03/05/2026</span><span>13:42</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line"><span>2× Dagschotel</span><span>€37,00</span></div>
+          <div class="receipt-line"><span>2× Wijn (glas)</span><span>€16,00</span></div>
+          <div class="receipt-line"><span>2× Koffie</span><span>€5,00</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line"><span>Subtotaal</span><span>€58,00</span></div>
+          <div class="receipt-line"><span>BTW 12% (eten)</span><span>€4,50</span></div>
+          <div class="receipt-line"><span>BTW 21% (drank)</span><span>€2,77</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line receipt-total"><span>TOTAAL</span><span>€65,27</span></div>
+
+          <div class="label label-1 right">📍 Bistro Le Coin</div>
+          <div class="label label-2 right">📅 3 mei 2026</div>
+          <div class="label label-3 left">🍽 BTW 12%: €4,50</div>
+          <div class="label label-4 left">🍷 BTW 21%: €2,77</div>
+          <div class="label label-5 right">🍴 Maaltijden</div>
+        </div>
+
+        <div class="demo-text">
+          <h3>Wat Slippr in 5 seconden ziet</h3>
+          <p>De AI leest niet alleen het totaal. Hij begrijpt de structuur van de bon — herkent leverancier, datum, ELKE afzonderlijke BTW-lijn, en kiest de juiste categorie.</p>
+          <ul class="check-list">
+            <li>Leverancier + adres uit de header</li>
+            <li>Datum in Europees formaat (DD/MM/YYYY)</li>
+            <li>Multi-BTW automatisch gesplitst</li>
+            <li>Categorie afgeleid uit context</li>
+            <li>Origineel 7 jaar bewaard in EU-cloud</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="section founder-section reveal">
+    <div class="section-inner">
+      <div class="founder-card">
+        <div class="founder-avatar">B</div>
+        <p class="founder-quote">"Slippr begon toen ik zelf elk kwartaal mijn weekend kwijt was aan bonnen sorteren. Ik bouwde 't eerst voor mezelf. Toen vroegen vrienden of ze 't ook konden gebruiken. Nu is het er voor iedereen die niet meer in een schoenendoos wil graven."</p>
+        <div class="founder-sig">— Ben Renier, oprichter · <a href="mailto:ben@slippr.app">ben@slippr.app</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Wat Slippr kan</span>
+      <h2 class="section-title">Gebouwd voor de <span class="gradient-text">Belgische en Nederlandse zelfstandige</span>.</h2>
+      <p class="section-sub">Geen generieke scanner. Elke functie is afgestemd op de Belgische en Nederlandse fiscale realiteit.</p>
+
+      <div class="features-grid">
         <div class="feature">
           <div class="feature-icon">🧾</div>
-          <h3>Meerdere BTW-tarieven per bon</h3>
-          <p>Colruyt-bon met 6% voeding én 21% non-food? Restaurant met 12% en 21%? Slippr splitst automatisch en exporteert elke lijn apart voor je boekhouder.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">🛡️</div>
-          <h3>7 jaar bewaargarantie</h3>
-          <p>Originele foto's en PDF-bonnen blijven byte-voor-byte bewaard in onze EU-cloud. BTW-controle? Eén tap en het origineel staat klaar, exact zoals je het ontving.</p>
+          <h3>Multi-BTW per bon</h3>
+          <p>Eten 12% + drank 21%? Voeding 6% + non-food 21%? Slippr splitst automatisch.</p>
         </div>
         <div class="feature">
           <div class="feature-icon">📥</div>
-          <h3>Direct vanuit Gmail of Drive</h3>
-          <p>Digitale factuur als PDF? Tap "Delen → Slippr" en de bon zit erin. Werkt met Gmail, Drive, Acrobat, WhatsApp en alles wat een PDF kan delen.</p>
+          <h3>Direct uit Gmail</h3>
+          <p>Tap "Delen → Slippr" op elke PDF-factuur. Werkt vanuit Gmail, Drive, Acrobat, WhatsApp.</p>
         </div>
         <div class="feature">
           <div class="feature-icon">📄</div>
           <h3>PDF voor boekhouder</h3>
-          <p>Kwartaalrapport met taartdiagram, BTW per tarief, volledige tabel. Klaar om te mailen.</p>
+          <p>Kwartaalrapport met taartdiagram, BTW-uitsplitsing, volledige tabel. Klaar om te mailen.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🛡️</div>
+          <h3>7 jaar bewaard</h3>
+          <p>Originele foto's en PDF's byte-voor-byte bewaard. BTW-conform voor Belgische en Nederlandse controles.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">☁️</div>
+          <h3>Cloud sync</h3>
+          <p>Telefoon kwijt? Log in op een nieuw toestel en alle bonnen staan terug. Inclusief originelen.</p>
         </div>
         <div class="feature">
           <div class="feature-icon">⚡</div>
-          <h3>5 seconden per bon</h3>
-          <p>Scannen gaat sneller dan de bon in je portemonnee stoppen. Letterlijk.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">🌐</div>
-          <h3>Drie talen</h3>
-          <p>Volledig in Nederlands, Frans en Engels. Toggle wanneer je wil.</p>
+          <h3>5 seconden per scan</h3>
+          <p>Foto → AI leest → bevestig met één tik. Sneller dan de bon in je portemonnee stoppen.</p>
         </div>
         <div class="feature">
           <div class="feature-icon">🔒</div>
-          <h3>Privacy eerst</h3>
-          <p>Geen advertenties, geen tracking, geen verkochte data. EU-servers, GDPR-compliant. Alleen jouw bonnetjes, alleen voor jou.</p>
+          <h3>EU-servers · GDPR</h3>
+          <p>Alle data op Supabase Frankfurt. Geen advertenties, geen tracking, geen verkochte data.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🌐</div>
+          <h3>NL · FR · EN</h3>
+          <p>Volledig drietalig. Wissel wanneer je wil — ook de PDF-export volgt je voorkeur.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Pricing -->
-    <section class="alt">
-      <div class="inner">
-        <h2>Simpel geprijsd</h2>
-        <p class="section-intro">Start gratis. Upgrade alleen als je het waardig vindt.</p>
+  <!-- PRICING -->
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Eerlijk geprijsd</span>
+      <h2 class="section-title">Eén prijs. <span class="gradient-text">Geen verrassingen.</span></h2>
+      <p class="section-sub">Probeer eerst gratis. Upgrade alleen als je het de moeite vindt.</p>
 
-        <div class="pricing-grid">
-          <div class="price-card">
-            <div class="price-name">Gratis</div>
-            <div class="price-amount">€0</div>
-            <div class="price-period">om te proberen</div>
-            <ul class="price-list">
-              <li>5 scans</li>
-              <li>PDF-export</li>
-              <li>Cloud backup</li>
-              <li>Alle talen</li>
-            </ul>
-          </div>
-          <div class="price-card popular">
-            <div class="popular-badge">Populair</div>
-            <div class="price-name">Premium</div>
-            <div class="price-amount">€7,99</div>
-            <div class="price-period">per maand</div>
-            <ul class="price-list">
-              <li><strong>Onbeperkt scannen</strong></li>
-              <li>Alle Gratis-features</li>
-              <li>Op elk moment opzegbaar</li>
-              <li>Geen lange contracten</li>
-            </ul>
-          </div>
+      <div class="pricing">
+        <div class="price-card">
+          <span class="price-badge">Premium</span>
+          <div class="price-amount"><span class="currency">€</span>7,99</div>
+          <div class="price-period">per maand · op elk moment opzegbaar</div>
+          <ul class="price-features">
+            <li>Onbeperkt bonnen scannen</li>
+            <li>Multi-BTW detectie</li>
+            <li>Kwartaalrapporten (PDF + CSV)</li>
+            <li>7 jaar bewaargarantie</li>
+            <li>Drietalige app + export</li>
+            <li>Cloud sync over al je toestellen</li>
+          </ul>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+            Start met 5 gratis scans
+          </a>
+          <div class="price-note">Eerst 5 scans gratis · geen kredietkaart nodig</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FAQ -->
-    <section>
-      <h2>Veelgestelde vragen</h2>
-      <p class="section-intro">Nog twijfels? We beantwoorden de meest gestelde vragen.</p>
+  <!-- FAQ -->
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Vragen</span>
+      <h2 class="section-title">Eerlijke antwoorden op <span class="gradient-text">echte vragen</span>.</h2>
 
-      <div style="max-width:720px;margin:0 auto;">
-        <details>
+      <div class="faq-list">
+        <details class="faq">
           <summary>Is mijn data veilig?</summary>
-          <p>Ja. Je bonnetjes worden opgeslagen op beveiligde servers in de EU (Supabase). Alleen jij kan je eigen data zien, gegarandeerd door row-level security. We verkopen of delen niks met derden voor marketing.</p>
+          <p>Ja. Alle gegevens staan op EU-servers (Supabase, Frankfurt). Row-level security zorgt dat alleen jij je eigen bonnen kan zien. We verkopen of delen niets met derden. Geen advertenties, geen tracking.</p>
         </details>
-        <details>
-          <summary>Wat gebeurt er als ik mijn telefoon kwijtraak?</summary>
-          <p>Geen probleem. Installeer Slippr op een nieuwe telefoon, log in met je Google-account, en alle bonnetjes inclusief foto's komen automatisch terug uit de cloud. Dit is waarom we cloud backup default aan hebben gezet.</p>
+        <details class="faq">
+          <summary>Werkt het met meerdere BTW-tarieven op één bon?</summary>
+          <p>Ja, dat is letterlijk Slippr's killer-feature. Restaurants (eten 12% + drank 21%), supermarkten (voeding 6% + non-food 21%), drogisterijen — Slippr detecteert ze automatisch en exporteert elke lijn apart voor je boekhouder.</p>
         </details>
-        <details>
+        <details class="faq">
+          <summary>Hoe lang worden mijn bonnen bewaard?</summary>
+          <p>Minstens 7 jaar — zoals de Belgische en Nederlandse BTW-bewaartermijn vereist. Originele foto's en PDF's blijven byte-voor-byte bewaard. Bij een controle download je het origineel met één tap.</p>
+        </details>
+        <details class="faq">
+          <summary>Wat als ik mijn telefoon kwijtraak?</summary>
+          <p>Niets verloren. Installeer Slippr op een nieuw toestel, log in met Google, en al je bonnen + originele documenten komen automatisch terug uit de cloud.</p>
+        </details>
+        <details class="faq">
           <summary>Werkt het met mijn boekhouder?</summary>
-          <p>Ja. Het PDF-rapport is duidelijk opgemaakt met BTW-uitsplitsing, categorieën en een volledige tabel van bonnetjes. Je kan ook CSV exporteren als je boekhouder dat liever heeft. De meeste boekhouders die we spraken vinden de PDF direct bruikbaar.</p>
+          <p>Ja. Het PDF-rapport heeft taartdiagram, BTW-uitsplitsing per tarief, volledige tabel met alle bonnen. CSV-export ook beschikbaar. De boekhouders die we spraken vinden de PDF direct bruikbaar.</p>
         </details>
-        <details>
-          <summary>Hoe accuraat is de AI?</summary>
-          <p>In onze tests leest Slippr ~95% van de bonnetjes volledig correct uit. Voor de overige 5% kan je met één tik de velden corrigeren. De AI wordt steeds beter, en bekende ketens (Shell, Proximus, Adobe, etc.) worden altijd juist gecategoriseerd.</p>
-        </details>
-        <details>
-          <summary>Werkt het ook met bonnen die meerdere BTW-tarieven hebben?</summary>
-          <p>Ja. Bonnen van Colruyt, Albert Heijn, Kruidvat of restaurants hebben vaak meerdere tarieven (bv. 6% voeding + 21% non-food). Slippr detecteert ze automatisch, splitst ze in aparte lijnen, en exporteert elke lijn apart in je CSV en PDF, exact zoals je boekhouder het wil.</p>
-        </details>
-        <details>
-          <summary>Hoe lang worden mijn bonnetjes bewaard?</summary>
-          <p>Minstens 7 jaar, zoals de Belgische en Nederlandse BTW-bewaartermijn vereist. Originele foto's en PDF-documenten blijven byte-voor-byte bewaard in onze beveiligde EU-cloud (Supabase). Bij een BTW-controle download je het origineel en heb je geldig bewijs.</p>
-        </details>
-        <details>
+        <details class="faq">
           <summary>Kan ik op elk moment opzeggen?</summary>
-          <p>Ja. Beheer je abonnement in je Google Play-account: twee tikken en je bent eraf. Geen contracten, geen verborgen kosten.</p>
+          <p>Ja. Beheer je abonnement in je Google Play-account — twee tikken en je bent eraf. Geen contracten, geen verborgen kosten.</p>
         </details>
-        <details>
-          <summary>Moet ik een Google-account hebben?</summary>
-          <p>Momenteel ja, we gebruiken Google Sign-in voor veilige login zonder wachtwoorden te hoeven onthouden. Apple Sign-in en e-mail-login staan op de roadmap.</p>
+        <details class="faq">
+          <summary>Hoe accuraat is de AI?</summary>
+          <p>~95% van de bonnen wordt volledig correct uitgelezen. Voor de 5% twijfelgevallen toont Slippr een waarschuwing in het bevestigingsscherm, zodat jij extra kan controleren. Je hebt altijd het laatste woord.</p>
+        </details>
+        <details class="faq">
+          <summary>Werkt het ook op iPhone?</summary>
+          <p>Nog niet — Slippr is voorlopig alleen op Android. iOS-versie staat op de roadmap voor eind 2026.</p>
         </details>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
-      <h2>Klaar om te beginnen?</h2>
-      <p>Installeer Slippr en scan je eerste bon binnen 2 minuten.</p>
-      <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+  <!-- FINAL CTA -->
+  <section class="final-cta reveal">
+    <div class="final-cta-inner">
+      <h2>Bouw mee aan een <span class="gradient-text">bonnen-vrij weekend</span>.</h2>
+      <p>5 gratis scans. Geen kredietkaart. Op je telefoon binnen 2 minuten.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener" style="font-size: 17px; padding: 18px 32px;">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.198-3.198l2.553 1.4a1 1 0 0 1 0 1.748l-2.553 1.4-2.75-2.274 2.75-2.274zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
         Download op Google Play
       </a>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <!-- ═══════════════════════ FR ═══════════════════════ -->
-  <div class="lang-section" id="lang-fr">
+</div>
 
-    <section class="hero">
-      <div class="hero-inner">
-        <h1>Ne ratez plus aucune<br><span class="highlight">dépense déductible</span></h1>
-        <p class="hero-sub">Scannez vos reçus en 5 secondes. L'IA extrait automatiquement le fournisseur, le montant et la TVA. À la fin du trimestre : un rapport prêt à envoyer à votre comptable, en un clic.</p>
+<!-- ═══════════════════ FR ═══════════════════ -->
+<div class="lang-section" id="lang-fr">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="dot">✓</span>
+          <span>Version 1.1.0 · pour indépendants belges et néerlandais</span>
+        </div>
+        <h1>Récupérez vos <span class="gradient-text">samedis soirs</span>.</h1>
+        <p class="hero-sub">Arrêtez de trier vos reçus dans une boîte à chaussures. Slippr les scanne en 5 secondes, extrait fournisseur, TVA et montant, et livre votre rapport trimestriel prêt à envoyer à votre comptable.</p>
         <div class="cta-row">
-          <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.198-3.198l2.553 1.4a1 1 0 0 1 0 1.748l-2.553 1.4-2.75-2.274 2.75-2.274zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
             Télécharger sur Google Play
           </a>
+          <a class="btn btn-ghost" href="#demo-fr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Voir comment ça marche
+          </a>
         </div>
-        <p class="hero-note">5 scans gratuits · Ensuite 7,99 €/mois · Résiliable à tout moment</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Arrêtez de trier vos reçus le samedi soir</h2>
-      <p class="section-intro">Plus de boîte à chaussures sous le bureau. Plus d'Excel à mettre à jour chaque mois. Plus de panique quand votre comptable demande les reçus du Q2.</p>
-      <div class="stat-box">
-        <span class="stat-number">5 minutes au lieu de 4 heures</span>
-        <span class="stat-text">Ce que Slippr fait en 5 minutes (extraire fournisseur, TVA et date, générer le rapport trimestriel) vous prendrait sinon une demi-journée par trimestre. Et le stress d'un reçu oublié lors d'un contrôle TVA ? Votre PDF original vous attend, conservé 7 ans.</span>
-      </div>
-    </section>
-
-    <section class="alt">
-      <div class="inner">
-        <h2>Comment ça marche</h2>
-        <p class="section-intro">Trois étapes. Pas d'Excel. Pas de prise de tête.</p>
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3>Prenez une photo</h3>
-            <p>Appuyez sur Scanner, prenez votre reçu en photo. Ou téléchargez depuis la galerie, ou partagez un PDF directement depuis Gmail.</p>
+        <div class="hero-trust">
+          <div class="hero-trust-avatars">
+            <div class="avatar">B</div><div class="avatar">M</div><div class="avatar">K</div><div class="avatar">D</div>
           </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3>L'IA fait le reste</h3>
-            <p>Claude-AI extrait le fournisseur, la date, le montant, le pourcentage de TVA et la catégorie. Confirmez en un clic.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3>Prêt pour votre comptable</h3>
-            <p>Fin du trimestre ? Un clic → rapport PDF avec graphique, ventilation TVA et tous les reçus. Envoyez par mail à votre comptable, c'est fait.</p>
+          <span>Adopté par des indépendants en BE et NL</span>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-content">
+              <div class="phone-header">Reçus</div>
+              <div class="phone-subtitle">T2 2026 · 12 scans</div>
+              <div class="phone-card"><div class="phone-card-icon">🧾</div><div class="phone-card-content"><div class="phone-card-title">Bistro Le Coin</div><div class="phone-card-meta">Repas · 03/05</div></div><div class="phone-card-amount">€54,00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">⛽</div><div class="phone-card-content"><div class="phone-card-title">Shell Station</div><div class="phone-card-meta">Déplacements · 02/05</div></div><div class="phone-card-amount">€60,00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">📄</div><div class="phone-card-content"><div class="phone-card-title">Anthropic Ireland</div><div class="phone-card-meta">Logiciel · 05/05</div></div><div class="phone-card-amount">€108,90</div></div>
+              <div class="phone-card"><div class="phone-card-icon">🚆</div><div class="phone-card-content"><div class="phone-card-title">SNCB</div><div class="phone-card-meta">Déplacements · 28/04</div></div><div class="phone-card-amount">€25,80</div></div>
+              <div class="phone-card"><div class="phone-card-icon">📱</div><div class="phone-card-content"><div class="phone-card-title">Proximus</div><div class="phone-card-meta">Télécom · 15/04</div></div><div class="phone-card-amount">€45,00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">🏨</div><div class="phone-card-content"><div class="phone-card-title">Booking.com</div><div class="phone-card-meta">Déplacements · 12/04</div></div><div class="phone-card-amount">€185,00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">💼</div><div class="phone-card-content"><div class="phone-card-title">Apple Store</div><div class="phone-card-meta">Bureau · 04/04</div></div><div class="phone-card-amount">€1.299,00</div></div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <h2>Conçu pour les indépendants BE et NL</h2>
-      <p class="section-intro">Pas un énième scanner de reçus. Tout est pensé pour la réalité fiscale belge et néerlandaise.</p>
-      <div class="features">
-        <div class="feature"><div class="feature-icon">🇧🇪🇳🇱</div><h3>Taux TVA BE et NL</h3><p>Reconnaît 0/6/12/21 % (BE) et 0/9/21 % (NL). Factures transfrontalières aussi.</p></div>
-        <div class="feature"><div class="feature-icon">🧾</div><h3>Plusieurs taux TVA par reçu</h3><p>Reçu Colruyt avec 6 % alimentation et 21 % non-alimentaire ? Restaurant avec 12 % et 21 % ? Slippr divise automatiquement et exporte chaque ligne séparément pour votre comptable.</p></div>
-        <div class="feature"><div class="feature-icon">🛡️</div><h3>Conservation 7 ans garantie</h3><p>Photos et PDF originaux conservés octet par octet sur notre cloud UE. Contrôle TVA ? Un clic et l'original est prêt, exactement tel que reçu.</p></div>
-        <div class="feature"><div class="feature-icon">📥</div><h3>Direct depuis Gmail ou Drive</h3><p>Facture numérique en PDF ? Tapez « Partager → Slippr » et le reçu y est. Fonctionne avec Gmail, Drive, Acrobat, WhatsApp et tout ce qui peut partager un PDF.</p></div>
-        <div class="feature"><div class="feature-icon">📄</div><h3>PDF pour comptable</h3><p>Rapport trimestriel avec graphique, TVA par taux, tableau complet. Prêt à envoyer par e-mail.</p></div>
-        <div class="feature"><div class="feature-icon">⚡</div><h3>5 secondes par reçu</h3><p>Scanner est plus rapide que ranger le reçu dans votre portefeuille. Littéralement.</p></div>
-        <div class="feature"><div class="feature-icon">🌐</div><h3>Trois langues</h3><p>Entièrement en néerlandais, français et anglais. Changement à tout moment.</p></div>
-        <div class="feature"><div class="feature-icon">🔒</div><h3>Vie privée d'abord</h3><p>Pas de publicités, pas de tracking, pas de données revendues. Serveurs UE, conformes RGPD. Uniquement vos reçus, pour vous.</p></div>
-      </div>
-    </section>
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Le problème</span>
+      <h2 class="section-title">Trier les reçus <span class="gradient-text">vous mange le week-end</span>.</h2>
+      <p class="section-sub">Tous les trois mois c'est le même rituel : boîte à chaussures ouverte, Excel ouvert, TVA à calculer, reçu après reçu. Quatre heures par trimestre perdues. Slippr réduit ça à cinq minutes.</p>
 
-    <section class="alt">
-      <div class="inner">
-        <h2>Tarification simple</h2>
-        <p class="section-intro">Commencez gratuitement. Passez à Premium seulement si vous y trouvez votre compte.</p>
-        <div class="pricing-grid">
-          <div class="price-card">
-            <div class="price-name">Gratuit</div>
-            <div class="price-amount">0 €</div>
-            <div class="price-period">pour essayer</div>
-            <ul class="price-list"><li>5 scans</li><li>Export PDF</li><li>Sauvegarde cloud</li><li>Toutes les langues</li></ul>
-          </div>
-          <div class="price-card popular">
-            <div class="popular-badge">Populaire</div>
-            <div class="price-name">Premium</div>
-            <div class="price-amount">7,99 €</div>
-            <div class="price-period">par mois</div>
-            <ul class="price-list"><li><strong>Scans illimités</strong></li><li>Toutes les fonctions Gratuit</li><li>Résiliable à tout moment</li><li>Pas d'engagement</li></ul>
-          </div>
+      <div class="problem-grid">
+        <div class="problem-card before">
+          <h3><span class="icon">😩</span> Sans Slippr</h3>
+          <ul>
+            <li>Boîte pleine de reçus jaunis</li>
+            <li>Excel qu'on essaie de tenir à jour chaque mois</li>
+            <li>TVA à calculer manuellement, à chaque fois</li>
+            <li>Panique quand le comptable appelle</li>
+            <li>Reçus oubliés = déduction perdue</li>
+          </ul>
+        </div>
+        <div class="problem-card after">
+          <h3><span class="icon">✨</span> Avec Slippr</h3>
+          <ul>
+            <li>Scanner un reçu en 5 secondes</li>
+            <li>IA extrait toutes les données automatiquement</li>
+            <li>TVA multi-taux correctement séparée</li>
+            <li>Un clic pour le rapport trimestriel (PDF)</li>
+            <li>Conservé 7 ans, prêt pour contrôle</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <h2>Questions fréquentes</h2>
-      <p class="section-intro">Encore des doutes ? Voici les questions les plus posées.</p>
-      <div style="max-width:720px;margin:0 auto;">
-        <details><summary>Mes données sont-elles en sécurité ?</summary><p>Oui. Vos reçus sont stockés sur des serveurs sécurisés dans l'UE (Supabase). Seul vous pouvez voir vos données, garanti par row-level security. Nous ne vendons ni partageons rien à des tiers pour du marketing.</p></details>
-        <details><summary>Que se passe-t-il si je perds mon téléphone ?</summary><p>Aucun problème. Installez Slippr sur un nouveau téléphone, connectez-vous avec votre compte Google, et tous vos reçus photos comprises reviennent automatiquement depuis le cloud.</p></details>
-        <details><summary>Compatible avec mon comptable ?</summary><p>Oui. Le PDF est clairement structuré avec ventilation TVA, catégories et tableau complet. Vous pouvez aussi exporter en CSV. La plupart des comptables trouvent le PDF directement exploitable.</p></details>
-        <details><summary>Quelle précision pour l'IA ?</summary><p>Dans nos tests, Slippr lit ~95 % des reçus parfaitement. Pour les 5 % restants, un clic suffit à corriger. Les enseignes connues (Shell, Proximus, Adobe, etc.) sont toujours catégorisées correctement.</p></details>
-        <details><summary>Fonctionne aussi avec les reçus à plusieurs taux de TVA ?</summary><p>Oui. Les reçus de Colruyt, Albert Heijn, Kruidvat ou des restaurants ont souvent plusieurs taux (par ex. 6 % alimentation + 21 % non-alimentaire). Slippr les détecte automatiquement, les divise en lignes séparées, et exporte chaque ligne séparément dans votre CSV et PDF, exactement comme votre comptable le souhaite.</p></details>
-        <details><summary>Combien de temps mes reçus sont-ils conservés ?</summary><p>Au moins 7 ans, comme l'exige le délai de conservation TVA en Belgique et aux Pays-Bas. Photos et documents PDF originaux sont conservés octet par octet sur notre cloud UE sécurisé (Supabase). Lors d'un contrôle TVA, vous téléchargez l'original et avez une preuve valide.</p></details>
-        <details><summary>Puis-je résilier à tout moment ?</summary><p>Oui. Gérez votre abonnement dans votre compte Google Play : deux clics et c'est annulé. Aucun contrat ni frais caché.</p></details>
-        <details><summary>Dois-je avoir un compte Google ?</summary><p>Actuellement oui, nous utilisons Google Sign-in pour une connexion sécurisée sans mot de passe à retenir. Apple Sign-in et e-mail sont prévus dans la roadmap.</p></details>
+  <section class="section reveal" id="demo-fr">
+    <div class="section-inner">
+      <span class="section-tag">Démo en direct</span>
+      <h2 class="section-title">Un clic. <span class="gradient-text">L'IA fait le reste.</span></h2>
+      <p class="section-sub">Un déjeuner d'affaires. TVA multi-taux (repas 12 %, boissons 21 %). La plupart des apps abandonnent. Slippr sépare automatiquement — exactement comme votre comptable le souhaite.</p>
+
+      <div class="demo-container">
+        <div class="receipt-demo" id="receipt-demo-fr">
+          <div class="receipt-title">BISTRO LE COIN</div>
+          <div class="receipt-address">Grote Markt 12 · Hasselt</div>
+          <div class="receipt-line"><span>03/05/2026</span><span>13:42</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line"><span>2× Plat du jour</span><span>€37,00</span></div>
+          <div class="receipt-line"><span>2× Vin (verre)</span><span>€16,00</span></div>
+          <div class="receipt-line"><span>2× Café</span><span>€5,00</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line"><span>Sous-total</span><span>€58,00</span></div>
+          <div class="receipt-line"><span>TVA 12% (repas)</span><span>€4,50</span></div>
+          <div class="receipt-line"><span>TVA 21% (boissons)</span><span>€2,77</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line receipt-total"><span>TOTAL</span><span>€65,27</span></div>
+
+          <div class="label label-1 right">📍 Bistro Le Coin</div>
+          <div class="label label-2 right">📅 3 mai 2026</div>
+          <div class="label label-3 left">🍽 TVA 12% : €4,50</div>
+          <div class="label label-4 left">🍷 TVA 21% : €2,77</div>
+          <div class="label label-5 right">🍴 Repas</div>
+        </div>
+
+        <div class="demo-text">
+          <h3>Ce que Slippr voit en 5 secondes</h3>
+          <p>L'IA ne lit pas seulement le total. Elle comprend la structure du reçu — reconnaît le fournisseur, la date, CHAQUE ligne TVA, et choisit la bonne catégorie.</p>
+          <ul class="check-list">
+            <li>Fournisseur + adresse depuis l'en-tête</li>
+            <li>Date en format européen (JJ/MM/AAAA)</li>
+            <li>TVA multi-taux séparée automatiquement</li>
+            <li>Catégorie déduite du contexte</li>
+            <li>Original conservé 7 ans en cloud UE</li>
+          </ul>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="final-cta">
-      <h2>Prêt à commencer ?</h2>
-      <p>Installez Slippr et scannez votre premier reçu en 2 minutes.</p>
-      <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+  <section class="section founder-section reveal">
+    <div class="section-inner">
+      <div class="founder-card">
+        <div class="founder-avatar">B</div>
+        <p class="founder-quote">« Slippr est né quand j'ai perdu mes week-ends à trier mes reçus. Je l'ai construit pour moi d'abord. Puis des amis ont demandé à l'utiliser. Maintenant il est là pour tous ceux qui ne veulent plus fouiller dans une boîte à chaussures. »</p>
+        <div class="founder-sig">— Ben Renier, fondateur · <a href="mailto:ben@slippr.app">ben@slippr.app</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Fonctionnalités</span>
+      <h2 class="section-title">Conçu pour les <span class="gradient-text">indépendants belges et néerlandais</span>.</h2>
+      <p class="section-sub">Pas un scanner générique. Chaque fonction est pensée pour la réalité fiscale belge et néerlandaise.</p>
+
+      <div class="features-grid">
+        <div class="feature"><div class="feature-icon">🧾</div><h3>TVA multi-taux</h3><p>Repas 12 % + boissons 21 % ? Alimentation 6 % + non-alimentaire 21 % ? Slippr sépare automatiquement.</p></div>
+        <div class="feature"><div class="feature-icon">📥</div><h3>Direct depuis Gmail</h3><p>Tapez « Partager → Slippr » sur n'importe quelle facture PDF. Fonctionne depuis Gmail, Drive, Acrobat, WhatsApp.</p></div>
+        <div class="feature"><div class="feature-icon">📄</div><h3>PDF pour comptable</h3><p>Rapport trimestriel avec graphique, ventilation TVA, tableau complet. Prêt à envoyer.</p></div>
+        <div class="feature"><div class="feature-icon">🛡️</div><h3>Conservation 7 ans</h3><p>Photos et PDF originaux conservés octet par octet. Conforme TVA pour la Belgique et les Pays-Bas.</p></div>
+        <div class="feature"><div class="feature-icon">☁️</div><h3>Synchro cloud</h3><p>Téléphone perdu ? Connectez-vous sur un nouvel appareil et tout est de retour. Originaux inclus.</p></div>
+        <div class="feature"><div class="feature-icon">⚡</div><h3>5 secondes par scan</h3><p>Photo → l'IA lit → un clic pour confirmer. Plus rapide que de ranger le reçu dans votre portefeuille.</p></div>
+        <div class="feature"><div class="feature-icon">🔒</div><h3>Serveurs UE · RGPD</h3><p>Données chez Supabase Francfort. Pas de publicité, pas de tracking, pas de revente.</p></div>
+        <div class="feature"><div class="feature-icon">🌐</div><h3>NL · FR · EN</h3><p>Entièrement trilingue. Changez quand vous voulez — l'export PDF suit votre préférence.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Tarification honnête</span>
+      <h2 class="section-title">Un prix. <span class="gradient-text">Pas de surprise.</span></h2>
+      <p class="section-sub">Essayez gratuitement. Passez en Premium seulement si ça vous convient.</p>
+
+      <div class="pricing">
+        <div class="price-card">
+          <span class="price-badge">Premium</span>
+          <div class="price-amount"><span class="currency">€</span>7,99</div>
+          <div class="price-period">par mois · résiliable à tout moment</div>
+          <ul class="price-features">
+            <li>Scans illimités</li>
+            <li>Détection TVA multi-taux</li>
+            <li>Rapports trimestriels (PDF + CSV)</li>
+            <li>Conservation 7 ans</li>
+            <li>App trilingue + export</li>
+            <li>Synchro cloud sur tous appareils</li>
+          </ul>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+            Commencer avec 5 scans gratuits
+          </a>
+          <div class="price-note">5 scans gratuits · pas de carte de crédit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Questions</span>
+      <h2 class="section-title">Réponses honnêtes aux <span class="gradient-text">vraies questions</span>.</h2>
+
+      <div class="faq-list">
+        <details class="faq"><summary>Mes données sont-elles en sécurité ?</summary><p>Oui. Toutes les données sont sur des serveurs UE (Supabase Francfort). Row-level security garantit que seul vous voyez vos reçus. Nous ne vendons ni partageons rien à des tiers.</p></details>
+        <details class="faq"><summary>Fonctionne-t-il avec plusieurs taux de TVA sur un reçu ?</summary><p>Oui, c'est littéralement la fonctionnalité phare de Slippr. Restaurants (repas 12 % + boissons 21 %), supermarchés (alimentation 6 % + non-alimentaire 21 %), drogueries — Slippr les détecte automatiquement et exporte chaque ligne séparément.</p></details>
+        <details class="faq"><summary>Combien de temps mes reçus sont-ils conservés ?</summary><p>Au moins 7 ans — selon le délai de conservation TVA en Belgique et aux Pays-Bas. Photos et PDF originaux conservés octet par octet. Lors d'un contrôle, vous téléchargez l'original en un clic.</p></details>
+        <details class="faq"><summary>Si je perds mon téléphone ?</summary><p>Rien de perdu. Installez Slippr sur un nouvel appareil, connectez-vous avec Google, et tous vos reçus + documents originaux reviennent automatiquement du cloud.</p></details>
+        <details class="faq"><summary>Compatible avec mon comptable ?</summary><p>Oui. Le PDF a un graphique en camembert, la ventilation TVA par taux, le tableau complet. Export CSV aussi disponible. Les comptables que nous avons consultés trouvent le PDF directement exploitable.</p></details>
+        <details class="faq"><summary>Puis-je résilier à tout moment ?</summary><p>Oui. Gérez votre abonnement dans Google Play — deux clics et c'est terminé. Pas de contrat, pas de frais cachés.</p></details>
+        <details class="faq"><summary>Quelle est la précision de l'IA ?</summary><p>~95 % des reçus sont parfaitement lus. Pour les 5 % de cas incertains, Slippr affiche un avertissement dans l'écran de confirmation pour que vous puissiez vérifier. Vous avez toujours le dernier mot.</p></details>
+        <details class="faq"><summary>Fonctionne-t-il sur iPhone ?</summary><p>Pas encore — Slippr n'est disponible que sur Android pour le moment. La version iOS est prévue pour fin 2026.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta reveal">
+    <div class="final-cta-inner">
+      <h2>Construisez un <span class="gradient-text">week-end sans reçus</span>.</h2>
+      <p>5 scans gratuits. Pas de carte. Installé en 2 minutes.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener" style="font-size: 17px; padding: 18px 32px;">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.198-3.198l2.553 1.4a1 1 0 0 1 0 1.748l-2.553 1.4-2.75-2.274 2.75-2.274zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
         Télécharger sur Google Play
       </a>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <!-- ═══════════════════════ EN ═══════════════════════ -->
-  <div class="lang-section" id="lang-en">
+</div>
 
-    <section class="hero">
-      <div class="hero-inner">
-        <h1>Never miss a<br><span class="highlight">deductible expense</span></h1>
-        <p class="hero-sub">Scan your receipts in 5 seconds. AI reads supplier, amount and VAT automatically. At quarter end: one tap for a ready-to-send report for your accountant.</p>
+<!-- ═══════════════════ EN ═══════════════════ -->
+<div class="lang-section" id="lang-en">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="dot">✓</span>
+          <span>1.1.0 live · built for Belgian and Dutch freelancers</span>
+        </div>
+        <h1>Get your <span class="gradient-text">Saturday evenings</span> back.</h1>
+        <p class="hero-sub">Stop sorting receipts in a shoebox. Slippr scans them in 5 seconds, reads supplier, VAT and amount automatically, and delivers your quarterly report ready for your accountant.</p>
         <div class="cta-row">
-          <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.198-3.198l2.553 1.4a1 1 0 0 1 0 1.748l-2.553 1.4-2.75-2.274 2.75-2.274zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
             Get it on Google Play
           </a>
+          <a class="btn btn-ghost" href="#demo-en">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            See how it works
+          </a>
         </div>
-        <p class="hero-note">5 free scans · Then €7.99/month · Cancel anytime</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Stop sorting receipts on Saturday evening</h2>
-      <p class="section-intro">No more shoebox under your desk. No more Excel to update each month. No more panic when your accountant asks for the Q2 receipts.</p>
-      <div class="stat-box">
-        <span class="stat-number">5 minutes vs 4 hours</span>
-        <span class="stat-text">What Slippr does in 5 minutes (extracting supplier, VAT and date, generating the quarterly report) would otherwise take you a Saturday morning per quarter. And the stress of a missing receipt during a tax audit? Your original PDF is right there, kept for 7 years.</span>
-      </div>
-    </section>
-
-    <section class="alt">
-      <div class="inner">
-        <h2>How it works</h2>
-        <p class="section-intro">Three steps. No Excel. No hassle.</p>
-        <div class="steps">
-          <div class="step"><div class="step-number">1</div><h3>Take a photo</h3><p>Tap Scan, photograph your receipt. Or upload from gallery, or share a PDF invoice straight from Gmail.</p></div>
-          <div class="step"><div class="step-number">2</div><h3>AI does the rest</h3><p>Claude AI extracts supplier, date, amount, VAT rate and category. Confirm with a single tap.</p></div>
-          <div class="step"><div class="step-number">3</div><h3>Ready for your accountant</h3><p>Quarter end? One tap → PDF report with pie chart, VAT breakdown and all receipts. Email it to your accountant, done.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Made for BE & NL freelancers</h2>
-      <p class="section-intro">Not just another scanner app. Everything is designed around the Belgian and Dutch fiscal reality.</p>
-      <div class="features">
-        <div class="feature"><div class="feature-icon">🇧🇪🇳🇱</div><h3>BE & NL VAT rates</h3><p>Recognises 0/6/12/21% (BE) and 0/9/21% (NL). Cross-border invoices too.</p></div>
-        <div class="feature"><div class="feature-icon">🧾</div><h3>Multiple VAT rates per receipt</h3><p>Colruyt receipt with 6% food and 21% non-food? Restaurant with 12% and 21%? Slippr splits them automatically and exports each line separately for your accountant.</p></div>
-        <div class="feature"><div class="feature-icon">🛡️</div><h3>7-year retention guarantee</h3><p>Original photos and PDF receipts kept byte-for-byte in our EU cloud. VAT audit? One tap and the original is ready, exactly as you received it.</p></div>
-        <div class="feature"><div class="feature-icon">📥</div><h3>Direct from Gmail or Drive</h3><p>Digital invoice as PDF? Tap "Share → Slippr" and the receipt is in. Works with Gmail, Drive, Acrobat, WhatsApp and anything that can share a PDF.</p></div>
-        <div class="feature"><div class="feature-icon">📄</div><h3>PDF for accountant</h3><p>Quarterly report with pie chart, VAT per rate, full table. Ready to email.</p></div>
-        <div class="feature"><div class="feature-icon">⚡</div><h3>5 seconds per receipt</h3><p>Scanning is literally faster than stuffing the receipt in your wallet.</p></div>
-        <div class="feature"><div class="feature-icon">🌐</div><h3>Three languages</h3><p>Fully in Dutch, French and English. Switch any time.</p></div>
-        <div class="feature"><div class="feature-icon">🔒</div><h3>Privacy first</h3><p>No ads, no tracking, no sold data. Just your receipts, just for you.</p></div>
-      </div>
-    </section>
-
-    <section class="alt">
-      <div class="inner">
-        <h2>Simple pricing</h2>
-        <p class="section-intro">Start free. Upgrade only if you find it worth it.</p>
-        <div class="pricing-grid">
-          <div class="price-card">
-            <div class="price-name">Free</div>
-            <div class="price-amount">€0</div>
-            <div class="price-period">to try</div>
-            <ul class="price-list"><li>5 scans</li><li>PDF export</li><li>Cloud backup</li><li>All languages</li></ul>
+        <div class="hero-trust">
+          <div class="hero-trust-avatars">
+            <div class="avatar">B</div><div class="avatar">M</div><div class="avatar">K</div><div class="avatar">D</div>
           </div>
-          <div class="price-card popular">
-            <div class="popular-badge">Popular</div>
-            <div class="price-name">Premium</div>
-            <div class="price-amount">€7.99</div>
-            <div class="price-period">per month</div>
-            <ul class="price-list"><li><strong>Unlimited scans</strong></li><li>All Free features</li><li>Cancel anytime</li><li>No contracts</li></ul>
+          <span>Used by self-employed in BE and NL</span>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-content">
+              <div class="phone-header">Receipts</div>
+              <div class="phone-subtitle">Q2 2026 · 12 scans</div>
+              <div class="phone-card"><div class="phone-card-icon">🧾</div><div class="phone-card-content"><div class="phone-card-title">Bistro Le Coin</div><div class="phone-card-meta">Meals · 03/05</div></div><div class="phone-card-amount">€54.00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">⛽</div><div class="phone-card-content"><div class="phone-card-title">Shell Station</div><div class="phone-card-meta">Travel · 02/05</div></div><div class="phone-card-amount">€60.00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">📄</div><div class="phone-card-content"><div class="phone-card-title">Anthropic Ireland</div><div class="phone-card-meta">Software · 05/05</div></div><div class="phone-card-amount">€108.90</div></div>
+              <div class="phone-card"><div class="phone-card-icon">🚆</div><div class="phone-card-content"><div class="phone-card-title">NMBS</div><div class="phone-card-meta">Travel · 28/04</div></div><div class="phone-card-amount">€25.80</div></div>
+              <div class="phone-card"><div class="phone-card-icon">📱</div><div class="phone-card-content"><div class="phone-card-title">Proximus</div><div class="phone-card-meta">Telecom · 15/04</div></div><div class="phone-card-amount">€45.00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">🏨</div><div class="phone-card-content"><div class="phone-card-title">Booking.com</div><div class="phone-card-meta">Travel · 12/04</div></div><div class="phone-card-amount">€185.00</div></div>
+              <div class="phone-card"><div class="phone-card-icon">💼</div><div class="phone-card-content"><div class="phone-card-title">Apple Store</div><div class="phone-card-meta">Office · 04/04</div></div><div class="phone-card-amount">€1,299.00</div></div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <h2>Frequently asked questions</h2>
-      <p class="section-intro">Still doubting? We've answered the most common questions.</p>
-      <div style="max-width:720px;margin:0 auto;">
-        <details><summary>Is my data safe?</summary><p>Yes. Your receipts are stored on secure EU servers (Supabase). Only you can see your data, guaranteed by row-level security. We don't sell or share anything with third parties for marketing.</p></details>
-        <details><summary>What happens if I lose my phone?</summary><p>No problem. Install Slippr on a new phone, sign in with your Google account, and all your receipts including photos automatically return from the cloud.</p></details>
-        <details><summary>Does it work with my accountant?</summary><p>Yes. The PDF is cleanly formatted with VAT breakdown, categories and full receipt table. You can also export to CSV. Most accountants we spoke with find the PDF directly usable.</p></details>
-        <details><summary>How accurate is the AI?</summary><p>In our tests, Slippr reads ~95% of receipts perfectly. For the remaining 5%, one tap is enough to correct fields. Known chains (Shell, Proximus, Adobe, etc.) are always categorised correctly.</p></details>
-        <details><summary>Does it work with multi-rate VAT receipts?</summary><p>Yes. Receipts from Colruyt, Albert Heijn, Kruidvat or restaurants often have multiple rates (e.g. 6% food + 21% non-food). Slippr detects them automatically, splits them into separate lines, and exports each line separately in your CSV and PDF, exactly the way your accountant wants.</p></details>
-        <details><summary>How long are my receipts kept?</summary><p>At least 7 years, matching the Belgian and Dutch VAT retention period. Original photos and PDF documents are preserved byte-for-byte in our secure EU cloud (Supabase). During a tax audit, you download the original and have valid proof.</p></details>
-        <details><summary>Can I cancel anytime?</summary><p>Yes. Manage your subscription in your Google Play account: two taps and you're out. No contracts, no hidden fees.</p></details>
-        <details><summary>Do I need a Google account?</summary><p>Currently yes, we use Google Sign-in for secure password-less login. Apple Sign-in and email login are on the roadmap.</p></details>
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">The problem</span>
+      <h2 class="section-title">Sorting receipts <span class="gradient-text">eats your weekend</span>.</h2>
+      <p class="section-sub">Every three months the same story: shoebox open, Excel open, VAT to calculate, receipt by receipt. Four hours per quarter lost. Slippr turns it into five minutes.</p>
+
+      <div class="problem-grid">
+        <div class="problem-card before">
+          <h3><span class="icon">😩</span> Without Slippr</h3>
+          <ul>
+            <li>Shoebox full of faded receipts</li>
+            <li>Excel you try to update each month</li>
+            <li>VAT calculated by hand, every time</li>
+            <li>Panic when the accountant calls</li>
+            <li>Forgotten receipts = lost deductions</li>
+          </ul>
+        </div>
+        <div class="problem-card after">
+          <h3><span class="icon">✨</span> With Slippr</h3>
+          <ul>
+            <li>Scan a receipt in 5 seconds</li>
+            <li>AI extracts all data automatically</li>
+            <li>Multi-VAT correctly split per line</li>
+            <li>One tap for quarterly report (PDF)</li>
+            <li>7 years stored, audit-ready</li>
+          </ul>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="final-cta">
-      <h2>Ready to start?</h2>
-      <p>Install Slippr and scan your first receipt within 2 minutes.</p>
-      <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+  <section class="section reveal" id="demo-en">
+    <div class="section-inner">
+      <span class="section-tag">Live demo</span>
+      <h2 class="section-title">One tap. <span class="gradient-text">AI does the rest.</span></h2>
+      <p class="section-sub">A business lunch with a client. Multi-VAT (food 12%, drinks 21%). Most apps give up. Slippr splits it automatically — exactly how your accountant wants it.</p>
+
+      <div class="demo-container">
+        <div class="receipt-demo" id="receipt-demo-en">
+          <div class="receipt-title">BISTRO LE COIN</div>
+          <div class="receipt-address">Grote Markt 12 · Hasselt</div>
+          <div class="receipt-line"><span>03/05/2026</span><span>13:42</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line"><span>2× Daily special</span><span>€37.00</span></div>
+          <div class="receipt-line"><span>2× Wine (glass)</span><span>€16.00</span></div>
+          <div class="receipt-line"><span>2× Coffee</span><span>€5.00</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line"><span>Subtotal</span><span>€58.00</span></div>
+          <div class="receipt-line"><span>VAT 12% (food)</span><span>€4.50</span></div>
+          <div class="receipt-line"><span>VAT 21% (drinks)</span><span>€2.77</span></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-line receipt-total"><span>TOTAL</span><span>€65.27</span></div>
+
+          <div class="label label-1 right">📍 Bistro Le Coin</div>
+          <div class="label label-2 right">📅 May 3, 2026</div>
+          <div class="label label-3 left">🍽 VAT 12%: €4.50</div>
+          <div class="label label-4 left">🍷 VAT 21%: €2.77</div>
+          <div class="label label-5 right">🍴 Meals</div>
+        </div>
+
+        <div class="demo-text">
+          <h3>What Slippr sees in 5 seconds</h3>
+          <p>The AI doesn't just read the total. It understands the receipt structure — recognising supplier, date, EVERY single VAT line, and picking the right category.</p>
+          <ul class="check-list">
+            <li>Supplier + address from the header</li>
+            <li>Date in European format (DD/MM/YYYY)</li>
+            <li>Multi-VAT split automatically</li>
+            <li>Category inferred from context</li>
+            <li>Original kept 7 years in EU cloud</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section founder-section reveal">
+    <div class="section-inner">
+      <div class="founder-card">
+        <div class="founder-avatar">B</div>
+        <p class="founder-quote">"Slippr started when I lost my weekends to sorting receipts. I built it for myself first. Then friends asked if they could use it too. Now it's here for everyone who doesn't want to dig through a shoebox anymore."</p>
+        <div class="founder-sig">— Ben Renier, founder · <a href="mailto:ben@slippr.app">ben@slippr.app</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Features</span>
+      <h2 class="section-title">Built for <span class="gradient-text">Belgian and Dutch freelancers</span>.</h2>
+      <p class="section-sub">Not a generic scanner. Every feature is shaped around the Belgian and Dutch fiscal reality.</p>
+
+      <div class="features-grid">
+        <div class="feature"><div class="feature-icon">🧾</div><h3>Multi-VAT per receipt</h3><p>Food 12% + drinks 21%? Groceries 6% + non-food 21%? Slippr splits them automatically.</p></div>
+        <div class="feature"><div class="feature-icon">📥</div><h3>Direct from Gmail</h3><p>Tap "Share → Slippr" on any PDF invoice. Works from Gmail, Drive, Acrobat, WhatsApp.</p></div>
+        <div class="feature"><div class="feature-icon">📄</div><h3>PDF for accountant</h3><p>Quarterly report with pie chart, VAT breakdown, full table. Ready to email.</p></div>
+        <div class="feature"><div class="feature-icon">🛡️</div><h3>7-year retention</h3><p>Original photos and PDFs kept byte-for-byte. VAT-compliant for Belgian and Dutch audits.</p></div>
+        <div class="feature"><div class="feature-icon">☁️</div><h3>Cloud sync</h3><p>Lost your phone? Sign in on a new device and all receipts return. Originals included.</p></div>
+        <div class="feature"><div class="feature-icon">⚡</div><h3>5 seconds per scan</h3><p>Photo → AI reads → one tap to confirm. Faster than putting the receipt in your wallet.</p></div>
+        <div class="feature"><div class="feature-icon">🔒</div><h3>EU servers · GDPR</h3><p>All data on Supabase Frankfurt. No ads, no tracking, no data sales.</p></div>
+        <div class="feature"><div class="feature-icon">🌐</div><h3>NL · FR · EN</h3><p>Fully trilingual. Switch whenever — even the PDF export follows your preference.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Honest pricing</span>
+      <h2 class="section-title">One price. <span class="gradient-text">No surprises.</span></h2>
+      <p class="section-sub">Try it free first. Upgrade only if you find it worth it.</p>
+
+      <div class="pricing">
+        <div class="price-card">
+          <span class="price-badge">Premium</span>
+          <div class="price-amount"><span class="currency">€</span>7.99</div>
+          <div class="price-period">per month · cancel anytime</div>
+          <ul class="price-features">
+            <li>Unlimited receipt scanning</li>
+            <li>Multi-VAT detection</li>
+            <li>Quarterly reports (PDF + CSV)</li>
+            <li>7-year retention guarantee</li>
+            <li>Trilingual app + export</li>
+            <li>Cloud sync across devices</li>
+          </ul>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener">
+            Start with 5 free scans
+          </a>
+          <div class="price-note">5 scans free · no credit card</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-inner">
+      <span class="section-tag">Questions</span>
+      <h2 class="section-title">Honest answers to <span class="gradient-text">real questions</span>.</h2>
+
+      <div class="faq-list">
+        <details class="faq"><summary>Is my data safe?</summary><p>Yes. All data lives on EU servers (Supabase Frankfurt). Row-level security ensures only you see your own receipts. We don't sell or share with third parties.</p></details>
+        <details class="faq"><summary>Does it handle multiple VAT rates on one receipt?</summary><p>Yes, that's literally Slippr's killer feature. Restaurants (food 12% + drinks 21%), supermarkets (groceries 6% + non-food 21%), drugstores — Slippr detects them automatically and exports each line separately.</p></details>
+        <details class="faq"><summary>How long are my receipts kept?</summary><p>At least 7 years — matching the Belgian and Dutch VAT retention period. Original photos and PDFs kept byte-for-byte. During an audit, you download the original with one tap.</p></details>
+        <details class="faq"><summary>What if I lose my phone?</summary><p>Nothing lost. Install Slippr on a new device, sign in with Google, and all receipts + original documents return automatically from the cloud.</p></details>
+        <details class="faq"><summary>Does it work with my accountant?</summary><p>Yes. The PDF has a pie chart, VAT breakdown by rate, full table. CSV export also available. The accountants we talked to found the PDF directly usable.</p></details>
+        <details class="faq"><summary>Can I cancel anytime?</summary><p>Yes. Manage your subscription in Google Play — two taps and you're out. No contracts, no hidden fees.</p></details>
+        <details class="faq"><summary>How accurate is the AI?</summary><p>~95% of receipts are read perfectly. For the 5% uncertain cases, Slippr shows a warning on the confirmation screen so you can double-check. You always have the final word.</p></details>
+        <details class="faq"><summary>Does it work on iPhone?</summary><p>Not yet — Slippr is currently Android-only. iOS version is on the roadmap for late 2026.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta reveal">
+    <div class="final-cta-inner">
+      <h2>Build a <span class="gradient-text">receipt-free weekend</span>.</h2>
+      <p>5 free scans. No credit card. Installed in 2 minutes.</p>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.slippr.app" target="_blank" rel="noopener" style="font-size: 17px; padding: 18px 32px;">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.198-3.198l2.553 1.4a1 1 0 0 1 0 1.748l-2.553 1.4-2.75-2.274 2.75-2.274zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
         Get it on Google Play
       </a>
-    </section>
-  </div>
+    </div>
+  </section>
+
+</div>
 
 </main>
 
-<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand brand">
+    <a class="brand" href="#top">
       <div class="brand-icon">S</div>
       <span class="brand-text">Slippr</span>
-    </div>
+    </a>
     <div class="footer-links">
       <a href="https://ben1998br.github.io/slippr-privacy/">Privacy</a>
       <a href="https://ben1998br.github.io/slippr-privacy/terms.html">Terms</a>
-      <a href="mailto:ben1998.br@gmail.com">Contact</a>
+      <a href="mailto:ben@slippr.app">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 Slippr · Made in Belgium for self-employed professionals
+    © 2026 Slippr · Gemaakt in België
   </div>
 </footer>
 
 <script>
+  // ═══════ Language switcher ═══════
   function switchLang(lang, btn) {
-    document.querySelectorAll('.lang-section').forEach(function (s) { s.classList.remove('active'); });
-    var target = document.getElementById('lang-' + lang);
-    if (target) target.classList.add('active');
-    document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.remove('active'); });
+    document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.documentElement.lang = lang;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // ═══════ Theme toggle ═══════
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('slippr-theme', next); } catch (e) {}
+  }
+  // Init theme from preference / storage
+  (function() {
+    try {
+      const saved = localStorage.getItem('slippr-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) {}
+  })();
+
+  // ═══════ Scroll-triggered reveal ═══════
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Trigger receipt demo animation
+        if (entry.target.querySelector && entry.target.querySelector('.receipt-demo')) {
+          setTimeout(() => {
+            entry.target.querySelectorAll('.receipt-demo').forEach(r => r.classList.add('animated'));
+          }, 400);
+        }
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
